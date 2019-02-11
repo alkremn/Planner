@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Planner.UI.MonthTypeHeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planner.UI"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="400"
+             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}},
+                Path=ActualWidth}">
+
+    <Border CornerRadius="10">
+    <Grid Background="{StaticResource DarkGreyBrush}" Height="40" >
+        <Grid.ColumnDefinitions>
+          
+            <!--Month-->
+            <ColumnDefinition Width="*" />
+
+            <!--Data-->
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+    
+        <TextBlock Grid.Column="0"
+                   Text="Month"
+                   Margin="15 0 15 0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="13"
+                   FontFamily="{StaticResource LatoBold}"
+                   Foreground="{StaticResource  BackgroundLightBrush}"/>
+            
+        <TextBlock Grid.Column="1"
+                       Text="Data"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       FontFamily="{StaticResource LatoBold}"
+                       Foreground="{StaticResource BackgroundLightBrush}"
+                       FontSize="13"/>
+        
+        
+
+    </Grid>
+    </Border>
+</UserControl>

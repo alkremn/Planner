@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="Planner.UI.AppointmentsListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planner.UI"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource BackgroundLightBrush}" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="0.05*" />
+        </Grid.RowDefinitions>
+
+        <!--Label-->
+            <TextBlock  
+                Grid.Column="1"
+                        Text="Customers" 
+                        Margin="0 0 0 43"
+                        Style="{StaticResource MainLabel}" 
+                        Foreground="{StaticResource MenuColorBrush}"/>
+            <TextBlock  Grid.Column="3"
+                        Text="Appointments" 
+                        Margin="0 0 0 43"
+                        Style="{StaticResource MainLabel}" 
+                        Foreground="{StaticResource MenuColorBrush}"/>    
+        
+        <!--Customer's List Header-->
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left"
+                CornerRadius="10">
+            <local:CusAppListHeaderControl  />
+        </Border>
+
+        <!--Customer's List-->
+        <ListView x:Name="CustomerListView" Grid.Row="2" Grid.Column="1" Background="Transparent" 
+                  ItemsSource="{Binding Customers}" 
+                  SelectedItem="{Binding SelectedCustomer}"
+                  Visibility="{Binding CustomerIsLoading ,Converter={local:BoolToVisibilityConverter}}"
+                  SelectionMode="Single" 
+                  BorderThickness="0"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:CusAppListItemControl x:Name="CustomerControl">
+                        <local:CusAppListItemControl.Style>
+                            <Style TargetType="{x:Type local:CusAppListItemControl}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" Value="true">
+                                        <Setter Property="Background" Value="{StaticResource DarkGreyBrush}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource BackgroundLightBrush}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </local:CusAppListItemControl.Style>
+                    </local:CusAppListItemControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Appointment"s list header List-->
+        <Border Grid.Row="1"
+                Grid.Column="3"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left"
+                CornerRadius="10">
+            <local:AppListHeaderControl />
+        </Border>
+
+
+        
+        <!--Appointment's List-->
+        <ListView x:Name="AppointmentListView" Grid.Row="2" Grid.Column="3" Background="Transparent"          
+                  Visibility="{Binding AppointmentListVisibility}"
+                  BorderThickness="0"
+                  ItemsSource="{Binding Appointments, UpdateSourceTrigger=PropertyChanged}"
+                  SelectionMode="Single" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:AppListItemControl x:Name="AppointmentControl">
+                        <local:AppListItemControl.Style>
+                            <Style TargetType="{x:Type local:AppListItemControl}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" Value="true">
+                                        <Setter Property="Background" Value="{StaticResource DarkGreyBrush}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource BackgroundLightBrush}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </local:AppListItemControl.Style>
+                    </local:AppListItemControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Loading Customer Icon-->
+        <TextBlock  Grid.Row="2"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="55"
+                    Style="{StaticResource SpinningText}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding CustomerIsLoading ,Converter={local:BoolToVisibilityConverter},ConverterParameter=True}" />
+
+        <!--No Customers label-->
+        <TextBlock  Grid.Row="2"
+                    Grid.Column="1"
+                    Text="No Customers"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0 50 0 0"
+                    FontSize="30"
+                    Style="{StaticResource MainLabel}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding NoCustomerLabelIsVisible, Converter={local:BoolToVisibilityConverter}, ConverterParameter=True}" />
+
+
+
+        <!--Loading Appointment Icon-->
+        <TextBlock  Grid.Row="2"
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="55"
+                    Style="{StaticResource SpinningText}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding AppointmentLoadingVisibility}" />
+
+       
+        
+        
+        <!--No Appointments label-->
+        <TextBlock  Grid.Row="2"
+                    Grid.Column="3"
+                    Text="No Appointments"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0 50 0 0"
+                    FontSize="30"
+                    Style="{StaticResource MainLabel}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding NoAppointmentsVisibility}" />
+
+
+
+
+    </Grid>
+</UserControl>

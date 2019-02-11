@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="Planner.UI.CalendarListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planner.UI"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="800"
+             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}},
+                Path=ActualWidth}">
+
+    <Grid Height="40" Background="Transparent" >
+        <Grid.ColumnDefinitions>
+
+            <!--Active-->
+            <ColumnDefinition Width="Auto" />
+
+            <!--Appointment Icon-->
+            <ColumnDefinition Width="Auto" />
+
+            <!--Customer Name-->
+            <ColumnDefinition Width="1*" />
+
+            <!--Time of Appointment-->
+            <ColumnDefinition Width="1*"/>
+
+            <!--Date of appointment-->
+            <ColumnDefinition Width="1*" />
+
+        
+        </Grid.ColumnDefinitions>
+        <Border Background="Transparent" 
+                Width="5" 
+                HorizontalAlignment="Left"
+                Visibility="{Binding _Active,Converter={local:BoolToVisibilityConverter},ConverterParameter=True}">
+            <TextBlock Text="{Binding _Id}" x:Name="CustomerId" Visibility="Collapsed"/>
+        </Border>
+        <Border Grid.Column="1" Padding="1">
+            <Border Background="{StaticResource  MenuColorBrush}" 
+                    Width="{Binding ActualHeight, RelativeSource={RelativeSource self}}"
+                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource self}}" Margin="5 3" HorizontalAlignment="Left">
+
+                <TextBlock Text="&#xf274;"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                FontSize="18"
+                                FontFamily="{StaticResource FontAwesome}"
+                                Foreground="{StaticResource BackgroundLightBrush}"/>
+            </Border>
+        </Border>
+
+        <Border Grid.Column="2" Padding="1" BorderBrush="{StaticResource  BackgroundColorBrush}">
+            <TextBlock Foreground="{StaticResource MenuColorBrush}"
+                       Text="{Binding _CustomerName, FallbackValue=Customer Name}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       FontFamily="{StaticResource LatoBold}"
+                       FontSize="15"/>
+        </Border>
+
+        <Border Grid.Column="3" Padding="1" BorderBrush="{StaticResource  BackgroundColorBrush}">
+            <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+                
+            <TextBlock Foreground="{StaticResource MenuColorBrush}"
+                       Text="{Binding _Start, Converter={local:DateToTimeFormatConverter}, FallbackValue=00:00 PM}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       FontFamily="{StaticResource LatoBold}"
+                       Margin="0"
+                       FontSize="15"/>
+               
+                <TextBlock Foreground="{StaticResource MenuColorBrush}"
+                       Text="{Binding _End, Converter={local:DateToTimeFormatConverter}, FallbackValue=00:00 PM}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       FontFamily="{StaticResource LatoBold}"
+                       FontSize="15"/>
+                <TextBlock  x:Name="AppointmentId"
+                            Foreground="{StaticResource MenuColorBrush}"
+                            Visibility="Collapsed"
+                            Text="{Binding _AppointmentId}" />
+            </StackPanel>
+        </Border>
+
+        
+            <TextBlock Grid.Column="4" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Text="{Binding _Start, Converter={local:DateToStringConverter},FallbackValue=00/00/00}"
+                       Foreground="{StaticResource MenuColorBrush}"
+                       FontSize="16"
+                       FontFamily="{StaticResource LatoBold}"
+                       />
+        
+        <!--Action Buttons--><!--
+        <Border Grid.Column="4" Padding="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                
+                --><!-- Modify Button --><!--
+                <Button Style="{StaticResource UtilityButton}" 
+                        Content="&#xf040;" 
+                        FontFamily="{StaticResource FontAwesome}" 
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        Margin="0 0 10 0"
+                        HorizontalAlignment="Center"
+                        Click="Modify_App_Button_Click"
+                />
+                --><!--Delete Button--><!--
+                <Button Style="{StaticResource UtilityButton}" 
+                        Content="&#xf1f8;" 
+                        FontFamily="{StaticResource FontAwesome}" 
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Click="Delete_App_Button_Click"
+                />
+            </StackPanel>
+        </Border>-->
+
+      
+    </Grid>
+</UserControl>

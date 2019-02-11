@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Planner.UI.Controls.Calendar.CalendarDayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planner.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="150"
+             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=ActualWidth, 
+             Converter={local:WidthConverter}}"
+             Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=ActualHeight, 
+             Converter={local:HeightConverter}}">
+
+        <Grid>
+            <TextBlock Text="{Binding Date.Day, FallbackValue= 31}" 
+                HorizontalAlignment="Right" 
+                Background="Transparent"
+                FontFamily="{StaticResource LatoBold}"
+                FontSize="30" 
+                Padding="5"/>
+
+        </Grid>
+</UserControl>

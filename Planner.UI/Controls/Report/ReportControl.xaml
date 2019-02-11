@@ -1,0 +1,295 @@
+﻿<UserControl x:Class="Planner.UI.ReportControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planner.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource BackgroundLightBrush}" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="0.05*" />
+        </Grid.RowDefinitions>
+
+        <!--Label-->
+        <TextBlock  
+                Grid.Column="1"
+                        Text="Reports" 
+                        Margin="0 0 0 0"
+                        Style="{StaticResource MainLabel}" 
+                        Foreground="{StaticResource MenuColorBrush}"/>
+        
+        <!--Appointment Type's List Header-->
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                BorderThickness="0"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left">
+            
+            <TextBlock  Text="Number of Appointment Types by Month"
+                        FontSize="12"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource  BackgroundLightBrush}"/>
+        </Border>
+        <Border Grid.Row="2"
+                Grid.Column="1"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                BorderThickness="0"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left">
+            <local:MonthTypeHeaderControl  />
+        </Border>
+
+        <!--Appointment Type's List-->
+        <ListView x:Name="CustomerListView" Grid.Row="3" Grid.Column="1" Background="Transparent" 
+                  ItemsSource="{Binding AppTypeCountList, UpdateSourceTrigger=PropertyChanged}" 
+                  SelectionMode="Single" 
+                  BorderThickness="0"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Focusable" Value="false"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:MonthTypeItemControl />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        
+
+        <!--Loading Customer Icon-->
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="35"
+                    Style="{StaticResource SpinningText}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding DataIsLoading ,Converter={local:BoolToVisibilityConverter},ConverterParameter=True}" />
+
+        <!--No Data label-->
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="1"
+                    Text="No Data"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0 30 0 0"
+                    FontSize="20"
+                    Style="{StaticResource MainLabel}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding MonthTypeLabelIsVisible, Converter={local:BoolToVisibilityConverter}, ConverterParameter=True}" />
+       
+        <!--  the schedule for each  consultant's List Header-->
+        <Border Grid.Row="1"
+                Grid.Column="3"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                BorderThickness="0"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left">
+
+            <TextBlock  Text="Consultant Shedule"
+                        FontSize="12"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource  BackgroundLightBrush}"/>
+        </Border>
+        
+        <Border Grid.Row="2"
+                Grid.Column="3"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                BorderThickness="0"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock 
+                   Text="Consultant"
+                   Margin="15 0 15 0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="13"
+                   FontFamily="{StaticResource LatoBold}"
+                   Foreground="{StaticResource  BackgroundLightBrush}"/>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock 
+                   Text="Appointment"
+                   Margin="15 0 15 0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="13"
+                   FontFamily="{StaticResource LatoBold}"
+                   Foreground="{StaticResource  BackgroundLightBrush}"/>
+                    <TextBlock 
+                   Text="time"
+                   Margin="15 0 15 0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="13"
+                   FontFamily="{StaticResource LatoBold}"
+                   Foreground="{StaticResource  BackgroundLightBrush}"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!--the schedule for each  consultant's List-->
+        <ListView x:Name="ConsultantListView" Grid.Row="3" Grid.Column="3" Background="Transparent" 
+                  ItemsSource="{Binding AppTimeByConList, UpdateSourceTrigger=PropertyChanged}" 
+                  SelectionMode="Single" 
+                  BorderThickness="0"
+                  Margin="0"
+                  Padding="0"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Focusable" Value="false"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:CunsAppItemControl x:Name="CunsAppItemControl">
+                        <local:CunsAppItemControl.Style>
+                            <Style TargetType="{x:Type local:CunsAppItemControl}">
+                                <Setter Property="Focusable" Value="false"/>
+                            </Style>
+                        </local:CunsAppItemControl.Style>
+                    </local:CunsAppItemControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Loading Customer Icon-->
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="35"
+                    Style="{StaticResource SpinningText}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding DataIsLoading ,Converter={local:BoolToVisibilityConverter},ConverterParameter=True}" />
+
+
+
+        <!--  User activity's List Header-->
+        <Border Grid.Row="1"
+                Grid.Column="5"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                BorderThickness="0"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left">
+
+            <TextBlock  Text="Number of Appointments per Customer"
+                        FontSize="12"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource  BackgroundLightBrush}"/>
+        </Border>
+
+        <Border Grid.Row="2"
+                Grid.Column="5"
+                Width="{Binding ElementName=CustomerListView, Path=ActualWidth}"
+                Height="40"
+                BorderThickness="0"
+                Background="{StaticResource DarkGreyBrush}" 
+                HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock 
+                       Text="Customer Name"
+                       Margin="15 0 15 0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="13"
+                       FontFamily="{StaticResource LatoBold}"
+                       Foreground="{StaticResource  BackgroundLightBrush}"/>
+
+                    <TextBlock Grid.Column="1" 
+                               VerticalAlignment="Center"
+                               Text="Number of Appointments"
+                               Margin="15 0 15 0"
+                               HorizontalAlignment="Center"
+                               FontSize="13"
+                               FontFamily="{StaticResource LatoBold}"
+                               Foreground="{StaticResource  BackgroundLightBrush}"/>
+
+            </Grid>
+        </Border>
+
+        <!--the schedule for each  consultant's List-->
+        <ListView x:Name="CustomerAppListView" Grid.Row="3" Grid.Column="5" Background="Transparent" 
+                  ItemsSource="{Binding Customers}" 
+                  SelectionMode="Single" 
+                  BorderThickness="0"
+                  Margin="0"
+                  Padding="0"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Focusable" Value="false"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:CusNumAppItemControl x:Name="CusNumAppItemControl">
+                        <local:CusNumAppItemControl.Style>
+                            <Style TargetType="{x:Type local:CusNumAppItemControl}">
+                                <Setter Property="Focusable" Value="false"/>
+                            </Style>
+                        </local:CusNumAppItemControl.Style>
+                    </local:CusNumAppItemControl>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <!--Loading Customer Icon-->
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="35"
+                    Style="{StaticResource SpinningText}"
+                    Foreground="{StaticResource WordOrangeBrush}" 
+                    Visibility="{Binding DataIsLoading ,Converter={local:BoolToVisibilityConverter},ConverterParameter=True}" />
+
+
+
+
+    </Grid>
+</UserControl>

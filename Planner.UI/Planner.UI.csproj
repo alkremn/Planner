@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB5534B6-75CE-41C6-A676-77FF1C0E0B31}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Planner.UI</RootNamespace>
+    <AssemblyName>Planner.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FamFamFam.Flags.Wpf, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FamFamFam.Flags.Wpf.1.1.2\lib\net35\FamFamFam.Flags.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.12\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AttachedProperties\ButtonProperties.cs" />
+    <Compile Include="AttachedProperties\PasswordBoxProperties.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\Appointments\AppListItemControl.xaml.cs">
+      <DependentUpon>AppListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Appointments\AppListHeaderControl.xaml.cs">
+      <DependentUpon>AppListHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Appointments\CusAppListItemControl.xaml.cs">
+      <DependentUpon>CusAppListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Appointments\CusAppListHeaderControl.xaml.cs">
+      <DependentUpon>CusAppListHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Appointments\AppointmentDetailControl.xaml.cs">
+      <DependentUpon>AppointmentDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Calendar\CalendarAppListHeaderControl.xaml.cs">
+      <DependentUpon>CalendarAppListHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Calendar\CalendarListItemControl.xaml.cs">
+      <DependentUpon>CalendarListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Calendar\CalendarControl.xaml.cs">
+      <DependentUpon>CalendarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Calendar\CalendarDayControl.xaml.cs">
+      <DependentUpon>CalendarDayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Calendar\CalendarWeekDayHeaderControl.xaml.cs">
+      <DependentUpon>CalendarWeekDayHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Customers\CustomerListHeaderControl.xaml.cs">
+      <DependentUpon>CustomerListHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Customers\CustomerListItemControl.xaml.cs">
+      <DependentUpon>CustomerListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Appointments\AppointmentsListControl.xaml.cs">
+      <DependentUpon>AppointmentsListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Customers\CustomersListControl.xaml.cs">
+      <DependentUpon>CustomersListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Customers\CustomerDetailControl.xaml.cs">
+      <DependentUpon>CustomerDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Dashboard\DashboardControl.xaml.cs">
+      <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\CusNumAppItemControl.xaml.cs">
+      <DependentUpon>CusNumAppItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\NumAppCusItemControl.xaml.cs">
+      <DependentUpon>NumAppCusItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\MonthTypeHeaderControl.xaml.cs">
+      <DependentUpon>MonthTypeHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\ConsAppItemControl.xaml.cs">
+      <DependentUpon>ConsAppItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\MonthTypeItemControl.xaml.cs">
+      <DependentUpon>MonthTypeItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\ReportControl.xaml.cs">
+      <DependentUpon>ReportControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataService\AppointmentDataService.cs" />
+    <Compile Include="DataService\CustomerDataService.cs" />
+    <Compile Include="DataService\Interfaces\IAppointmentDataService.cs" />
+    <Compile Include="DataService\Interfaces\IAuthenticationDataService.cs" />
+    <Compile Include="DataService\Interfaces\ICustomerDataService.cs" />
+    <Compile Include="Events\AddAppointmentEvent.cs" />
+    <Compile Include="Events\AppointmentIsLoadingEvent.cs" />
+    <Compile Include="Events\CustomerIsLoadingEvent.cs" />
+    <Compile Include="Events\CustomerModifyEvent.cs" />
+    <Compile Include="Events\DeleteCustomerEvent.cs" />
+    <Compile Include="Events\NewCustomerCreatedEvent.cs" />
+    <Compile Include="Events\NewCustomerViewEvent.cs" />
+    <Compile Include="Events\ReportButtonClickedEvent.cs" />
+    <Compile Include="Events\SaveNewAppointmentEvent.cs" />
+    <Compile Include="Events\SelectedCustomerChangedEvent.cs" />
+    <Compile Include="Events\UserAuthenticationEvent.cs" />
+    <Compile Include="Exceptions\InvalidCustomerDataException.cs" />
+    <Compile Include="Exceptions\AuthenticationException.cs" />
+    <Compile Include="Model\AppTimeByConsultant.cs" />
+    <Compile Include="Model\AppTypeCountByMonth.cs" />
+    <Compile Include="Model\Day.cs" />
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GlobalStrings.es.Designer.cs">
+      <DependentUpon>GlobalStrings.es.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\GlobalStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\SecureStringHelpers.cs" />
+    <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ValueConverters\AppointmentToStringConverter.cs" />
+    <Compile Include="ValueConverters\BoolToVisibilityConverter.cs" />
+    <Compile Include="ValueConverters\CountryDataToColorConverter.cs" />
+    <Compile Include="ValueConverters\CustomerListToVisibility.cs" />
+    <Compile Include="ValueConverters\CustomerToStringConverter.cs" />
+    <Compile Include="ValueConverters\DateToStringConverter.cs" />
+    <Compile Include="ValueConverters\DateToTimeFormatConverter.cs" />
+    <Compile Include="ValueConverters\DayToStringLabelConverter.cs" />
+    <Compile Include="ValueConverters\HeightConverter.cs" />
+    <Compile Include="ValueConverters\NullToAddress2Converter.cs" />
+    <Compile Include="ValueConverters\StringToTimeSpanConverter.cs" />
+    <Compile Include="ValueConverters\TimeSpanCollectionToStringConverter.cs" />
+    <Compile Include="ValueConverters\BoolToColorConverter.cs" />
+    <Compile Include="ValueConverters\WidthConverter.cs" />
+    <Compile Include="ViewModel\Base\ApplicationControls.cs" />
+    <Compile Include="ViewModel\Appointments\AppointmentDetailViewModel.cs" />
+    <Compile Include="ViewModel\Base\IHavePassword.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ValueConverters\Empty2BoolConverter.cs" />
+    <Compile Include="ViewModel\Appointments\AppointmentsListViewModel.cs" />
+    <Compile Include="ViewModel\Calendar\CalendarViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IAppointmentDetailViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ICalendarViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ICustomerListItemViewModel.cs" />
+    <Compile Include="ViewModel\Customers\CustomersListViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IAppointmentsListViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ICustomersListViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IDashboardViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ILoginViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IMainPageViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ICustomerDetailViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IReportViewModel.cs" />
+    <Compile Include="ViewModel\Login\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Customers\CustomerDetailViewModel.cs" />
+    <Compile Include="ViewModel\Report\ReportViewModel.cs" />
+    <Compile Include="Wrapper\AppointmentWrapper.cs" />
+    <Compile Include="Wrapper\CustomerWrapper.cs" />
+    <Page Include="Controls\Appointments\AppListItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Appointments\AppListHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Appointments\CusAppListItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Appointments\CusAppListHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Appointments\AppointmentDetailControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Calendar\CalendarAppListHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Calendar\CalendarListItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Calendar\CalendarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Calendar\CalendarDayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Calendar\CalendarWeekDayHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Customers\CustomerListHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Customers\CustomerListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Appointments\AppointmentsListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Customers\CustomersListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Customers\CustomerDetailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Dashboard\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Report\CusNumAppItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Report\NumAppCusItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Report\MonthTypeHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Report\ConsAppItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Report\MonthTypeItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Report\ReportControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataService\AuthenticationDataService.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Texts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GlobalStrings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GlobalStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\Lato-Regular.ttf" />
+    <Resource Include="Fonts\Lato-Thin.ttf" />
+    <Resource Include="Fonts\Lato-Bold.ttf" />
+    <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Planner.DataAccess\Planner.DataAccess.csproj">
+      <Project>{1079537d-f826-49af-94df-fea7ef208890}</Project>
+      <Name>Planner.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Planner.Model\Planner.Model.csproj">
+      <Project>{2821f70f-840c-4a21-acea-eb3ac9180931}</Project>
+      <Name>Planner.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

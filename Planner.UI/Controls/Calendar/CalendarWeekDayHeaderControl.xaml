@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Planner.UI.Controls.Calendar.CalendarWeekDayHeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planner.UI"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="800"
+             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}},
+                Path=ActualWidth}">
+
+    <!--<UserControl.DataContext>
+        <local:CustomerItemControlDesignData />
+  </UserControl.DataContext>-->
+
+
+    <Grid Background="{StaticResource DarkGreyBrush}" Height="30" >
+        <Grid.ColumnDefinitions>
+            <!--Sun-->
+            <ColumnDefinition Width="*" />
+            
+            <!--Mon-->
+            <ColumnDefinition Width="*" />
+
+            <!--Tue-->
+            <ColumnDefinition Width="*" />
+
+            <!--Wed-->
+            <ColumnDefinition Width="*" />
+
+            <!--Thu-->
+            <ColumnDefinition Width="*" />
+
+            <!--Fri-->
+            <ColumnDefinition Width="*" />
+
+            <!--Sat-->
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+       
+            <TextBlock  Text="Sun"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource  BackgroundLightBrush}"/>
+            
+            <TextBlock  Text="Mon"
+                        Grid.Column="1"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource BackgroundLightBrush}"
+                        FontSize="14"/>
+
+        <TextBlock  Text="Tue"
+                        Grid.Column="2"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource BackgroundLightBrush}"
+                        FontSize="14"/>
+
+        <TextBlock  Text="Wed"
+                        Grid.Column="3"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource BackgroundLightBrush}"
+                        FontSize="14"/>
+        <TextBlock  Text="Thu"
+                        Grid.Column="4"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource BackgroundLightBrush}"
+                        FontSize="14"/>
+        <TextBlock  Text="Fri"
+                        Grid.Column="5"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource BackgroundLightBrush}"
+                        FontSize="14"/>
+        <TextBlock  Text="Sat"
+                        Grid.Column="6"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        FontFamily="{StaticResource LatoBold}"
+                        Foreground="{StaticResource BackgroundLightBrush}"
+                        FontSize="14"/>
+
+
+    </Grid>
+</UserControl>
